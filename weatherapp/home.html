@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d35793f2b6.js" crossorigin="anonymous"></script>
+    <title>WATAVARAN</title>
+    <style>
+        .box{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            height: max-content;
+            margin: auto;
+            font-size: 20px;
+            border:2px solid gray;
+            border-radius: 30px;
+            background-color: rgb(55, 153, 199);
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+       
+        .weathercon{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            padding: 50px 0px;
+        }
+        .info{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 20px;
+            margin: 0px;
+            background-color:  rgb(13, 81, 112);
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="wave -one"></div>
+        <div class="wave -two"></div>
+        <div class="wave -three"></div>
+
+        <div class="weathercon">
+            <i class="fa-solid fa-sun" style="color: yellow;"></i>
+        </div>
+
+        <div class="info">
+            <h2 class="location">   <i class="fa-solid fa-location-dot" style="color: #c41717;"> </i> {%location%}, {%country%}</h2>
+            <p class="date">MON | OCT24 | 10:47AM</p>
+            <h1 class="temp">{%temp%}&deg;C</h1>
+            <h3 class="tempminmax">MIN {%mintemp%}&deg;C | MAX {%maxtemp%}&deg;C</h3>
+        </div>
+
+    </div>
+    <script>
+        const currentdata = document.getElementsByClassName("date")[0];
+        let weathercon = document.getElementsByClassName("weathercon")[0];
+
+        let tempstatus = "{%tempstatus%}";
+
+        if(tempstatus == "Sunny"){
+            weathercon.innerHTML = `<i class="fa-solid fa-sun" style="color: yellow;"></i>`;
+        }else if(tempstatus == "Clouds"){
+            weathercon.innerHTML = `<i class="fa-solid fa-cloud" style="color: white;"></i>`;
+        }else if(tempstatus == "Rainy"){
+            weathercon.innerHTML = `<i class="fa-solid fa-cloud-rain" style="color: white;"></i>`;
+        }else{
+            weathercon.innerHTML = `<i class="fa-solid fa-cloud" style="color: #44c3de;"></i>`;
+        }
+
+        const getCurrentDay = ()=>{
+            const weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+            let currentTime = new Date();
+            let day = weekday[currentTime.getDay()];
+            // console.log(day);
+            return day;
+        }
+        const getCurrentTime= ()=>{
+            const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+            let now = new Date();
+            let month = months[now.getMonth()];
+            let day = now.getDate();
+            let year = now.getFullYear();
+
+            let hour = now.getHours();
+            let mins = now.getMinutes(); 
+
+            let period = "AM";
+
+            if(hour >11){
+                period = "PM"
+                if(hour >12 ) hour -= 12
+            }
+
+            if(mins < 10){
+                mins = "0" + mins;
+            }
+
+            return `${month} ${day} | ${hour}:${mins} ${period}`
+        }
+
+        // getCurrentTime();/
+        currentdata.innerHTML =  getCurrentDay() + " | " + getCurrentTime()
+
+
+        // getCurrentDay();
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+[
+    {
+        "Id": 1,
+        "Customer": "paresh bhai",
+        "Quantity": 1,
+        "age": 17
+    }, {
+        "Id": 2,
+        "Customer": "diku ben",
+        "Quantity": 1,
+        "age": 20
+    }
+]
